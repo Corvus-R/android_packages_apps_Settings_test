@@ -211,4 +211,8 @@
     <string name="corvus_build_date">Build date:</string>
     <string name="build_type">Build type:</string>
     <string name="version">Version:</string>
+
+    <!-- Pocket mode -->
+    <string name="proximity_wake_title">Prevent accidental wake-up</string>
+    <string name="proximity_wake_summary">Check the proximity sensor prior to waking up screen</string>
 </resources>
