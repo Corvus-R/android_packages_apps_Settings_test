@@ -218,4 +218,8 @@
 
     <!-- Lockscreen fragment -->
     <string name="lockscreen_tuner_title">Lockscreen Shortcuts</string>
+    
+    <!-- Double tap-to-sleep -->
+    <string name="double_tap_to_sleep_title">Status bar</string>
+    <string name="double_tap_to_sleep_summary">Double-tap status bar to put the device to sleep</string>
 </resources>
