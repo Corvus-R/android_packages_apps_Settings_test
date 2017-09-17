@@ -30,6 +30,11 @@
         android:title="@string/status_bar_clock_title"
         android:fragment="com.android.settings.corvus.fragments.ClockDateSettings"/>
 
+      <Preference
+        android:key="traffic"
+        android:fragment="com.android.settings.corvus.fragments.Traffic"
+        android:title="@string/traffic_title" />
+
      <com.corvus.support.preferences.SystemSettingSwitchPreference
         android:key="double_tap_sleep_gesture"
         android:title="@string/double_tap_to_sleep_title"
