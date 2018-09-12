@@ -232,6 +232,7 @@
 
     <!-- Buttons title -->
     <string name="volume_category">Volume Rocker</string>
+    <string name="power_category">Power button</string>
 
     <!--Volume keys -->
     <string name="volume_rocker_wake_title">Volume rocker wake</string>
@@ -242,4 +243,8 @@
     <!-- Volume swap buttons -->
     <string name="swap_volume_buttons_title">Reorient</string>
     <string name="swap_volume_buttons_summary">Swap volume buttons when the screen is rotated</string>
+
+     <!-- Power menu on lockscreen -->
+    <string name="lockscreen_power_menu_disabled_title">Disable power menu on lock screen</string>
+    <string name="lockscreen_power_menu_disabled_summary">This will only disable the power menu on secure lock screens</string>
 </resources>

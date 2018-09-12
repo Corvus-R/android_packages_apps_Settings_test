@@ -16,12 +16,6 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/raven_buttons_title">
 
-    <ListPreference
-        android:key="torch_power_button_gesture"
-        android:title="@string/torch_power_button_gesture_title"
-        android:entries="@array/torch_power_button_gesture_entries"
-        android:entryValues="@array/torch_power_button_gesture_values" />
-
     <PreferenceCategory
         android:key="volume_category"
         android:title="@string/volume_category">
@@ -45,6 +39,24 @@
         android:title="@string/swap_volume_buttons_title"
         android:summary="@string/swap_volume_buttons_summary"
         android:defaultValue="false" />    
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="power_category"
+        android:title="@string/power_category">
+
+        <ListPreference
+            android:key="torch_power_button_gesture"
+            android:title="@string/torch_power_button_gesture_title"
+            android:entries="@array/torch_power_button_gesture_entries"
+            android:entryValues="@array/torch_power_button_gesture_values" />
+
+        <com.corvus.support.preferences.SystemSettingSwitchPreference
+            android:key="lockscreen_power_menu_disabled"
+            android:title="@string/lockscreen_power_menu_disabled_title"
+            android:summary="@string/lockscreen_power_menu_disabled_summary"
+            android:defaultValue="false" />
 
     </PreferenceCategory>
 
