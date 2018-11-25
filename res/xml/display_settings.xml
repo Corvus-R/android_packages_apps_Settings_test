@@ -169,7 +169,12 @@
         <com.corvus.support.preferences.SystemSettingSwitchPreference
             android:key="double_tap_sleep_lockscreen"
             android:title="@string/double_tap_to_sleep_lockscreen_title"
-            android:summary="@string/double_tap_to_sleep_lockscreen_summary"
+            android:summary="@string/double_tap_to_sleep_lockscreen_summary" />
+
+        <com.corvus.support.preferences.SystemSettingSwitchPreference
+            android:key="wake_when_plugged_or_unplugged"
+            android:title="@string/wake_when_plugged_or_unplugged_title"
+            android:summary="@string/wake_when_plugged_or_unplugged_summary"
             android:defaultValue="true" />
 
         <ListPreference
