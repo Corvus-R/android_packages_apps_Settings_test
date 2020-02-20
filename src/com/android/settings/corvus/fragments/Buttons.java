@@ -44,6 +44,7 @@ public class Buttons extends ActionFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String HWKEY_DISABLE = "hardware_keys_disable";
+    private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
     
     // category keys
     private static final String CATEGORY_HWKEY = "hardware_keys";
@@ -71,10 +72,9 @@ public class Buttons extends ActionFragment
 
     private static final String TORCH_POWER_BUTTON_GESTURE = "torch_power_button_gesture";
 
-    private SwitchPreference mHwKeyDisable;
+    private SwitchPreference mHwKeyDisable,mNavigationBar;
     private ListPreference mTorchPowerButton;
-    private CustomSeekBarPreference mButtonTimoutBar;
-    private CustomSeekBarPreference mManualButtonBrightness;
+    private CustomSeekBarPreference mButtonTimoutBar,mManualButtonBrightness;
     private PreferenceCategory mButtonBackLightCategory;
 
     @Override
@@ -179,6 +179,19 @@ public class Buttons extends ActionFragment
 
         // load preferences first
         setActionPreferencesEnabled(keysDisabled == 0);
+
+        // Navigation bar
+        final boolean defaultToNavigationBar = getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar);
+        final boolean navigationBarEnabled = Settings.System.getIntForUser(
+                resolver, Settings.System.FORCE_SHOW_NAVBAR,
+                defaultToNavigationBar ? 1 : 0, UserHandle.USER_CURRENT) != 0;
+
+        mNavigationBar = (SwitchPreference) findPreference(KEY_NAVIGATION_BAR_ENABLED);
+        mNavigationBar.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.FORCE_SHOW_NAVBAR,
+                defaultToNavigationBar ? 1 : 0) == 1));
+        mNavigationBar.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -215,6 +228,11 @@ public class Buttons extends ActionFragment
             int buttonBrightness = (Integer) newValue;
             Settings.System.putInt(getContentResolver(),
                     Settings.System.CUSTOM_BUTTON_BRIGHTNESS, buttonBrightness);
+        } else if (preference == mNavigationBar) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.FORCE_SHOW_NAVBAR, value ? 1 : 0);
+            return true;
         } else {
             return false;
         }
