@@ -45,6 +45,7 @@ public class Buttons extends ActionFragment
 
     private static final String HWKEY_DISABLE = "hardware_keys_disable";
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
+    private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
     
     // category keys
     private static final String CATEGORY_HWKEY = "hardware_keys";
@@ -192,6 +193,8 @@ public class Buttons extends ActionFragment
                 Settings.System.FORCE_SHOW_NAVBAR,
                 defaultToNavigationBar ? 1 : 0) == 1));
         mNavigationBar.setOnPreferenceChangeListener(this);
+
+        Preference mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
     }
 
     @Override
