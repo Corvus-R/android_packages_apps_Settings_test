@@ -38,6 +38,7 @@ import com.android.internal.util.hwkeys.ActionConstants;
 import com.android.internal.util.hwkeys.ActionUtils;
 import com.android.settings.corvus.preference.ActionFragment;
 import com.corvus.support.preferences.CustomSeekBarPreference;
+import com.corvus.support.preferences.SystemSettingSwitchPreference;
 
 @SearchIndexable
 public class Buttons extends ActionFragment 
@@ -46,6 +47,7 @@ public class Buttons extends ActionFragment
     private static final String HWKEY_DISABLE = "hardware_keys_disable";
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
     private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
+    private static final String KEY_NAVIGATION_BAR_ARROWS = "navigation_bar_menu_arrow_keys";
     
     // category keys
     private static final String CATEGORY_HWKEY = "hardware_keys";
@@ -77,6 +79,8 @@ public class Buttons extends ActionFragment
     private ListPreference mTorchPowerButton;
     private CustomSeekBarPreference mButtonTimoutBar,mManualButtonBrightness;
     private PreferenceCategory mButtonBackLightCategory;
+    private Preference mLayoutSettings;
+    private SystemSettingSwitchPreference mNavigationArrows;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -194,7 +198,9 @@ public class Buttons extends ActionFragment
                 defaultToNavigationBar ? 1 : 0) == 1));
         mNavigationBar.setOnPreferenceChangeListener(this);
 
-        Preference mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
+        mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
+
+        mNavigationArrows = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
     }
 
     @Override
