@@ -20,6 +20,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.graphics.Color;
@@ -81,6 +82,10 @@ public class Buttons extends ActionFragment
     private PreferenceCategory mButtonBackLightCategory;
     private Preference mLayoutSettings;
     private SystemSettingSwitchPreference mNavigationArrows;
+
+    private boolean mIsNavSwitchingMode = false;
+
+    private Handler mHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -201,6 +206,8 @@ public class Buttons extends ActionFragment
         mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
 
         mNavigationArrows = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
+
+         mHandler = new Handler();
     }
 
     @Override
@@ -239,8 +246,18 @@ public class Buttons extends ActionFragment
                     Settings.System.CUSTOM_BUTTON_BRIGHTNESS, buttonBrightness);
         } else if (preference == mNavigationBar) {
             boolean value = (Boolean) newValue;
+            if (mIsNavSwitchingMode) {
+                return false;
+            }
+            mIsNavSwitchingMode = true;
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.FORCE_SHOW_NAVBAR, value ? 1 : 0);
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mIsNavSwitchingMode = false;
+                }
+            }, 1500);
             return true;
         } else {
             return false;
