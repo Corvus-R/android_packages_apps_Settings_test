@@ -17,11 +17,13 @@
 package com.android.settings.gestures;
 
 import android.app.settings.SettingsEnums;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.view.WindowManager;
 
@@ -48,6 +50,7 @@ public class GestureNavigationSettingsFragment extends DashboardFragment {
 
     private static final String LEFT_HEIGHT_SEEKBAR_KEY = Settings.Secure.BACK_GESTURE_HEIGHT_LEFT;
     private static final String RIGHT_HEIGHT_SEEKBAR_KEY = Settings.Secure.BACK_GESTURE_HEIGHT_RIGHT;
+    private static final String GESTURE_NAVBAR_LENGTH_KEY = "gesture_navbar_length_preference";
 
     private WindowManager mWindowManager;
     private BackGestureIndicatorView mIndicatorView;
@@ -62,6 +65,8 @@ public class GestureNavigationSettingsFragment extends DashboardFragment {
     private final Point mDisplaySize = new Point();
 
     private static final float[] mBackGestureHeights = {4.0f, 2.0f, 1.33f, 1.0f};
+
+    private LabeledSeekBarPreference mGestureNavbarLengthPreference;
 
     public GestureNavigationSettingsFragment() {
         super();
@@ -91,6 +96,8 @@ public class GestureNavigationSettingsFragment extends DashboardFragment {
 
         initSeekBarPreference(LEFT_HEIGHT_SEEKBAR_KEY);
         initSeekBarPreference(RIGHT_HEIGHT_SEEKBAR_KEY);
+
+        initGestureNavbarLengthPreference();
     }
 
     @Override
@@ -190,6 +197,21 @@ public class GestureNavigationSettingsFragment extends DashboardFragment {
             Settings.Secure.putFloat(getContext().getContentResolver(), p.getKey(), scale);
             return true;
         });
+    }
+
+    private void initGestureNavbarLengthPreference() {
+        final ContentResolver resolver = getContext().getContentResolver();
+        mGestureNavbarLengthPreference = getPreferenceScreen().findPreference(GESTURE_NAVBAR_LENGTH_KEY);
+        // mGestureNavbarLengthPreference.setEnabled(Settings.System.getIntForUser(
+        //     resolver, Settings.System.FULLSCREEN_GESTURES,
+        //     0, UserHandle.USER_CURRENT) == 0);
+        mGestureNavbarLengthPreference.setContinuousUpdates(true);
+        mGestureNavbarLengthPreference.setProgress(Settings.Secure.getIntForUser(
+            resolver, Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
+            0, UserHandle.USER_CURRENT));
+        mGestureNavbarLengthPreference.setOnPreferenceChangeListener((p, v) ->
+            Settings.Secure.putIntForUser(resolver, Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
+                (Integer) v, UserHandle.USER_CURRENT));
     }
 
     private static float[] getFloatArray(TypedArray array) {
