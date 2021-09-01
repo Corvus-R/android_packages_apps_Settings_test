@@ -94,6 +94,12 @@
         android:title="@string/back_gesture_haptic_title"
         android:summary="@string/back_gesture_haptic_summary"
         android:defaultValue="false" />
+        
+    <com.corvus.support.preferences.SystemSettingSwitchPreference
+        android:key="navigation_bar_ime_space"
+        android:title="@string/navigation_bar_ime_space_title"
+        android:summary="@string/navigation_bar_ime_space_summary"
+        android:defaultValue="true" />
 
     <Preference
         android:key="gesture_nav_custom_options"
