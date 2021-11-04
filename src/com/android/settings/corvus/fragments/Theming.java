@@ -19,8 +19,10 @@ package com.android.settings.corvus.fragments;
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.graphics.Color;
 
 import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
@@ -32,11 +34,13 @@ import com.android.settingslib.search.SearchIndexable;
 import com.corvus.support.colorpicker.ColorPickerPreference;
 import com.corvus.support.preferences.CustomSeekBarPreference;
 
-import java.lang.Math;
-
 @SearchIndexable
 public class Theming extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
+
+    private String MONET_ENGINE_COLOR_OVERRIDE = "monet_engine_color_override";
+
+    private ColorPickerPreference mMonetColor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,10 +48,29 @@ public class Theming extends SettingsPreferenceFragment
         final ContentResolver resolver = getActivity().getContentResolver();
 
         addPreferencesFromResource(R.xml.theming);
+
+        final PreferenceScreen screen = getPreferenceScreen();
+
+        mMonetColor = (ColorPickerPreference) screen.findPreference(MONET_ENGINE_COLOR_OVERRIDE);
+        int intColor = Settings.Secure.getInt(resolver, MONET_ENGINE_COLOR_OVERRIDE, Color.WHITE);
+        String hexColor = String.format("#%08x", (0xffffff & intColor));
+        mMonetColor.setNewPreviewColor(intColor);
+        mMonetColor.setSummary(hexColor);
+        mMonetColor.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mMonetColor) {
+            String hex = ColorPickerPreference.convertToARGB(Integer
+                .parseInt(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.Secure.putInt(resolver,
+                MONET_ENGINE_COLOR_OVERRIDE, intHex);
+            return true;
+        }
         return false;
     }
 
