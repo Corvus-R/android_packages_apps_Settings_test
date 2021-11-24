@@ -414,4 +414,8 @@
     <string name="charging_animation_summary">Display an animation when the device is plugged in</string>
     <string name="charging_animation_loop_title">Repeat charging animation</string>
     <string name="charging_animation_loop_summary">Repeat charging ripple animation every 3 seconds</string>
+
+    <!-- QS battery estimates -->
+    <string name="qs_show_battery_estimate_title">Battery estimates</string>
+    <string name="qs_show_battery_estimate_summary">Show estimated remaining battery life next to the icon</string>
 </resources>
