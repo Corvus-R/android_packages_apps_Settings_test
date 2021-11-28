@@ -18,6 +18,7 @@ package com.android.settings.corvus.fragments;
 
 import android.content.ContentResolver;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.graphics.Color;
 
@@ -31,9 +32,15 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
+import com.android.internal.util.corvus.CorvusUtils;
+
 @SearchIndexable
 public class Statusbar extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
+
+    private static final String COMBINED_SIGNAL_ICONS = "combined_status_bar_signal_icons";
+
+    private SwitchPreference mEnableCombinedSignalIcons;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,10 +50,23 @@ public class Statusbar extends SettingsPreferenceFragment
         addPreferencesFromResource(R.xml.statusbar);
 
         final PreferenceScreen screen = getPreferenceScreen();
+
+        mEnableCombinedSignalIcons = (SwitchPreference) findPreference(COMBINED_SIGNAL_ICONS);
+        String def = Settings.System.getString(getContentResolver(),
+                 COMBINED_SIGNAL_ICONS);
+        mEnableCombinedSignalIcons.setChecked(def != null && Integer.parseInt(def) == 1);
+        mEnableCombinedSignalIcons.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if  (preference == mEnableCombinedSignalIcons) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putString(getActivity().getContentResolver(),
+                    COMBINED_SIGNAL_ICONS, value ? "1" : "0");
+            CorvusUtils.showSystemUiRestartDialog(getActivity());
+            return true;
+        }
         return false;
     }
 

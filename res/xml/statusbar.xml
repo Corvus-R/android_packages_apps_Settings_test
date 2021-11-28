@@ -41,5 +41,11 @@
         android:title="@string/status_bar_toggle_brightness"
         android:summary="@string/status_bar_toggle_brightness_summary"
         android:defaultValue="false" />
+
+     <SwitchPreference
+             android:key="combined_status_bar_signal_icons"
+             android:title="@string/combined_status_bar_signal_icons_title"
+             android:summary="@string/combined_status_bar_signal_icons_summary"
+             android:defaultValue="true" />
      
 </PreferenceScreen>
