@@ -18,44 +18,70 @@
 
     <PreferenceCategory
         android:key="monet_category"
-        android:title="Monet"/>
+        android:title="Monet">
 
-     <com.corvus.support.preferences.SecureSettingSwitchPreference
-        android:key="monet_engine_custom_color"
-        android:title="@string/monet_engine_custom_color_title"
-        android:summary="@string/monet_engine_custom_color_summary"
-        android:defaultValue="false" />
+        <com.corvus.support.preferences.SecureSettingSwitchPreference
+            android:key="monet_engine_custom_color"
+            android:title="@string/monet_engine_custom_color_title"
+            android:summary="@string/monet_engine_custom_color_summary"
+            android:defaultValue="false" />
 
-    <com.corvus.support.colorpicker.ColorPickerPreference
-        android:key="monet_engine_color_override"
-        android:title="@string/monet_engine_color_override_title"
-        android:dependency="monet_engine_custom_color"
-        android:defaultValue="0xffffff" />
+        <com.corvus.support.colorpicker.ColorPickerPreference
+            android:key="monet_engine_color_override"
+            android:title="@string/monet_engine_color_override_title"
+            android:dependency="monet_engine_custom_color"
+            android:defaultValue="0xffffff" />
 
-    <com.corvus.support.preferences.SecureSettingSwitchPreference
-        android:key="monet_engine_linear_lightness"
-        android:title="@string/monet_engine_linear_lightness_title"
-        android:defaultValue="false" />
+        <com.corvus.support.preferences.SecureSettingSwitchPreference
+            android:key="monet_engine_linear_lightness"
+            android:title="@string/monet_engine_linear_lightness_title"
+            android:defaultValue="false" />
 
-    <com.corvus.support.preferences.SecureSettingSwitchPreference
-        android:key="monet_engine_accurate_shades"
-        android:title="@string/monet_engine_accurate_shades_title"
-        android:defaultValue="true" />
+        <com.corvus.support.preferences.SecureSettingSwitchPreference
+            android:key="monet_engine_accurate_shades"
+            android:title="@string/monet_engine_accurate_shades_title"
+            android:defaultValue="true" />
 
-    <com.corvus.support.preferences.SecureSettingSeekBarPreference
-        android:key="monet_engine_white_luminance_user"
-        android:title="@string/monet_engine_white_luminance_user_title"
-        android:defaultValue="425"
-        android:max="1000"
-        settings:min="200"
-        settings:interval="100"/>
+        <com.corvus.support.preferences.SecureSettingSeekBarPreference
+            android:key="monet_engine_white_luminance_user"
+            android:title="@string/monet_engine_white_luminance_user_title"
+            android:defaultValue="425"
+            android:max="1000"
+            settings:min="200"
+            settings:interval="100"/>
 
-    <com.corvus.support.preferences.SecureSettingSeekBarPreference
-        android:key="monet_engine_chroma_factor"
-        android:title="@string/monet_engine_chroma_factor_title"
-        android:defaultValue="100"
-        android:max="400"
-        settings:min="50"
-        settings:interval="50"/>
+        <com.corvus.support.preferences.SecureSettingSeekBarPreference
+            android:key="monet_engine_chroma_factor"
+            android:title="@string/monet_engine_chroma_factor_title"
+            android:defaultValue="100"
+            android:max="400"
+            settings:min="50"
+            settings:interval="50"/>
+    
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="system_theming"
+        android:title="System theming">
+
+        <Preference
+            android:key="android.theme.customization.fonts"
+            android:title="@string/theme_customization_font_title"
+            android:summary="@string/theme_customization_font_summary"
+            android:fragment="com.android.settings.corvus.fragments.FontsPicker"/>
+
+        <Preference
+            android:key="android.theme.customization.icon_pack"
+            android:title="@string/theme_customization_icon_pack_title"
+            android:summary="@string/theme_customization_icon_pack_summary"
+            android:fragment="com.android.settings.corvus.fragments.StatusbarIcons"/>
+
+        <Preference
+            android:key="android.theme.customization.adaptive_icon_shape"
+            android:title="@string/theme_customization_icon_shape_title"
+            android:summary="@string/theme_customization_icon_shape_summary"
+            android:fragment="com.android.settings.corvus.fragments.IconShapes"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
