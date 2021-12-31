@@ -57,37 +57,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:touchscreenBlocksFocus="false"
-        android:keyboardNavigationCluster="false">
+        android:keyboardNavigationCluster="false"
+        app:elevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/homepage_top_background"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+
         <LinearLayout
             android:id="@+id/app_bar_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/homepage_title"
+                android:text="@string/settings_label"
+                android:layout_weight="1"
+                style="@style/HomepageTitleText"/>
 
             <ImageView
                 android:id="@+id/account_avatar"
                 android:layout_width="@dimen/avatar_length"
                 android:layout_height="@dimen/avatar_length"
-                android:layout_marginTop="@dimen/avatar_margin_top"
                 android:layout_marginEnd="@dimen/avatar_margin_end"
-                android:layout_gravity="end"
+                android:layout_weight="0"
                 android:visibility="invisible"
                 android:accessibilityTraversalAfter="@id/homepage_title"
                 android:contentDescription="@string/search_bar_account_avatar_content_description"/>
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/homepage_title"
-                android:text="@string/settings_label"
-                style="@style/HomepageTitleText"/>
-
-            <FrameLayout
-                android:id="@+id/suggestion_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <include layout="@layout/search_bar"/>
+        <include layout="@layout/search_bar"/>
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/suggestion_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        app:layout_anchor="@+id/app_bar"
+        app:layout_anchorGravity="bottom|center"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

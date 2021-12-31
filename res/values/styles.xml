@@ -800,8 +800,9 @@
     <style name="HomepageTitleText" parent="CollapsingToolbarTitle.Expanded">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/avatar_margin_end</item>
         <item name="android:layout_marginBottom">@dimen/homepage_title_margin_bottom</item>
-        <item name="android:layout_marginHorizontal">@dimen/homepage_title_margin_horizontal</item>
+        <item name="android:layout_marginVertical">@dimen/homepage_title_margin_horizontal</item>
     </style>
 
     <style name="RequestManageCredentialsButtonPanel">
