@@ -15,94 +15,98 @@
      limitations under the License.
 -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:androidprv="http://schemas.android.com/apk/prv/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/settings_homepage_container"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/main_content_scrollable_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.android.settings.widget.HomepageAppBarScrollingViewBehavior">
-
-        <LinearLayout
-            android:id="@+id/homepage_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/contextual_cards_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/contextual_card_side_margin"
-                android:layout_marginEnd="@dimen/contextual_card_side_margin"/>
-
-            <FrameLayout
-                android:id="@+id/main_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:animateLayoutChanges="true"
-                android:background="?android:attr/windowBackground"/>
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/homepage_top_background"
         android:touchscreenBlocksFocus="false"
         android:keyboardNavigationCluster="false"
         app:elevation="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/homepage_top_background"
+            android:layout_height="@dimen/homepage_header_height"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
-        <LinearLayout
-            android:id="@+id/app_bar_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
             <TextView
                 android:id="@+id/homepage_title"
                 android:text="@string/settings_label"
-                android:layout_weight="1"
                 style="@style/HomepageTitleText"/>
 
-            <ImageView
-                android:id="@+id/account_avatar"
-                android:layout_width="@dimen/avatar_length"
-                android:layout_height="@dimen/avatar_length"
-                android:layout_marginEnd="@dimen/avatar_margin_end"
-                android:layout_weight="0"
-                android:visibility="invisible"
-                android:accessibilityTraversalAfter="@id/homepage_title"
-                android:contentDescription="@string/search_bar_account_avatar_content_description"/>
+            <LinearLayout
+                android:id="@+id/app_bar_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <include 
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    layout="@layout/search_bar"/>
+
+                <ImageView
+                    android:id="@+id/account_avatar"
+                    android:layout_width="@dimen/avatar_length"
+                    android:layout_height="@dimen/avatar_length"
+                    android:layout_marginStart="@dimen/avatar_margin_end"
+                    android:layout_marginEnd="@dimen/avatar_margin_end"
+                    android:visibility="invisible"
+                    android:accessibilityTraversalAfter="@id/homepage_title"
+                    android:contentDescription="@string/search_bar_account_avatar_content_description"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <include layout="@layout/search_bar"/>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:layout_marginTop="20dp"
+            android:theme="@style/Theme.TabTheme"
+            android:background="@android:color/transparent"
+            app:tabGravity="center"
+            app:tabIndicator="@drawable/tabs_indicator_background"
+            app:tabIndicatorColor="?androidprv:attr/colorAccentPrimaryVariant"
+            app:tabSelectedTextColor="@*android:color/accent_device_default"
+            app:tabTextAppearance="@style/TextAppearance.Tab"
+            app:tabTextColor="?android:attr/textColorSecondary"/>
 
-        </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/suggestion_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        app:layout_anchor="@+id/app_bar"
-        app:layout_anchorGravity="bottom|center"/>
+        android:layout_below="@id/app_bar" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <FrameLayout
+        android:id="@+id/contextual_cards_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/contextual_card_side_margin"
+        android:layout_marginEnd="@dimen/contextual_card_side_margin"
+        android:layout_below="@id/suggestion_content"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:layout_below="@id/contextual_cards_content"/>
+
+</RelativeLayout>

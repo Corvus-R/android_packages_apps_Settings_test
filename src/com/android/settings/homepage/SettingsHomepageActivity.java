@@ -16,11 +16,14 @@
 
 package com.android.settings.homepage;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.animation.LayoutTransition;
 import android.app.ActivityManager;
 import android.app.settings.SettingsEnums;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -33,15 +36,20 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.android.internal.util.UserIcons;
 
 import com.android.settings.R;
+import com.android.settings.Utils;
 import com.android.settings.accounts.AvatarViewMixin;
 import com.android.settings.core.CategoryMixin;
 import com.android.settings.core.FeatureFlags;
@@ -50,6 +58,8 @@ import com.android.settings.overlay.FeatureFactory;
 import com.android.settingslib.core.lifecycle.HideNonSystemOverlayMixin;
 
 import com.android.settingslib.drawable.CircleFramedDrawable;
+
+import java.util.ArrayList;
 
 /** Settings homepage activity */
 public class SettingsHomepageActivity extends FragmentActivity implements
@@ -62,6 +72,9 @@ public class SettingsHomepageActivity extends FragmentActivity implements
     private View mHomepageView;
     private View mSuggestionView;
     private CategoryMixin mCategoryMixin;
+
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
 
     @Override
     public CategoryMixin getCategoryMixin() {
@@ -93,7 +106,16 @@ public class SettingsHomepageActivity extends FragmentActivity implements
 
         final View appBar = findViewById(R.id.app_bar_container);
         appBar.setMinimumHeight(getSearchBoxHeight());
-        initHomepageContainer();
+        
+        mTabLayout = findViewById(R.id.tab_layout);
+        mViewPager = findViewById(R.id.viewPager);
+
+        mTabLayout.setupWithViewPager(mViewPager);
+        setupTabTextColor(mTabLayout);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPagerAdapter.addFragment(new TopLevelSettings(), "Device Settings");
+        viewPagerAdapter.addFragment(new CorvusSettings(), "Corvus Settings");
+        mViewPager.setAdapter(viewPagerAdapter);
 
         Context context = getApplicationContext();
 
@@ -128,9 +150,23 @@ public class SettingsHomepageActivity extends FragmentActivity implements
                 showFragment(new ContextualCardsFragment(), R.id.contextual_cards_content);
             }
         }
-        showFragment(new TopLevelSettings(), R.id.main_content);
-        ((FrameLayout) findViewById(R.id.main_content))
-                .getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+    }
+
+    private void setupTabTextColor(TabLayout tabLayout) {
+        final ColorStateList defaultColorStateList = tabLayout.getTabTextColors();
+        final ColorStateList resultColorStateList = new ColorStateList(
+                new int[][]{
+                    new int[]{android.R.attr.state_selected},
+                    new int[]{}
+                },
+                new int[] {
+                    defaultColorStateList.getColorForState(new int[]{android.R.attr.state_selected},
+                            Utils.getColorAttrDefaultColor(getApplicationContext(),
+                            com.android.internal.R.attr.colorAccentPrimaryVariant)),
+                    Utils.getColorAttrDefaultColor(getApplicationContext(), android.R.attr.textColorSecondary)
+                }
+        );
+        tabLayout.setTabTextColors(resultColorStateList);
     }
 
     private void showSuggestionFragment() {
@@ -167,12 +203,16 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         fragmentTransaction.commit();
     }
 
-    private void initHomepageContainer() {
-        final View view = findViewById(R.id.homepage_container);
-        // Prevent inner RecyclerView gets focus and invokes scrolling.
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-    }
+    // private void initHomepageContainer() {
+    //     tabLayout = findViewById(R.id.tab_layout);
+    //     viewPager = findViewById(R.id.viewPager);
+
+    //     tabLayout.setupWithViewPager(viewPager);
+    //     ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    //     viewPagerAdapter.addFragment(new TopLevelSettings(), "Device Settings");
+    //     viewPagerAdapter.addFragment(new CorvusSettings(), "Corvus Settings");
+    //     viewPager.setAdapter(viewPagerAdapter);
+    // }
 
     private int getSearchBoxHeight() {
         final int searchBarHeight = getResources().getDimensionPixelSize(R.dimen.search_bar_height);
@@ -199,5 +239,37 @@ public class SettingsHomepageActivity extends FragmentActivity implements
     public void onResume() {
         super.onResume();
         avatarView.setImageDrawable(getCircularUserIcon(getApplicationContext()));
+    }
+
+    static class ViewPagerAdapter extends FragmentPagerAdapter {
+
+        private final ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
+        private final ArrayList<String> fragmentTitle = new ArrayList<>();
+
+        public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+            super(fm, behavior);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentArrayList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentArrayList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title){
+            fragmentArrayList.add(fragment);
+            fragmentTitle.add(title);
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return fragmentTitle.get(position);
+        }
     }
 }
