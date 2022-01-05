@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:androidprv="http://schemas.android.com/apk/prv/res/android">
+    <corners android:bottomLeftRadius="?android:attr/dialogCornerRadius"
+             android:bottomRightRadius="?android:attr/dialogCornerRadius" />
+    <solid android:color="?androidprv:attr/colorSurface" />
+</shape>

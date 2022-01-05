@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018 The Android Open Source Project
+ *               2022 CorvusOS
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +39,7 @@ import android.widget.ImageView;
 import android.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.settings.corvus.CorvusSettings;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.fragment.app.Fragment;
@@ -75,6 +77,10 @@ public class SettingsHomepageActivity extends FragmentActivity implements
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+    private int[] tabIcons = {
+            R.drawable.tab_ic_device,
+            R.drawable.tab_ic_corvus
+    };
 
     @Override
     public CategoryMixin getCategoryMixin() {
@@ -107,15 +113,8 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         final View appBar = findViewById(R.id.app_bar_container);
         appBar.setMinimumHeight(getSearchBoxHeight());
         
-        mTabLayout = findViewById(R.id.tab_layout);
-        mViewPager = findViewById(R.id.viewPager);
-
-        mTabLayout.setupWithViewPager(mViewPager);
-        setupTabTextColor(mTabLayout);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPagerAdapter.addFragment(new TopLevelSettings(), "Device Settings");
-        viewPagerAdapter.addFragment(new CorvusSettings(), "Corvus Settings");
-        mViewPager.setAdapter(viewPagerAdapter);
+        initHomepageContainer();
+        setupTabIcons();
 
         Context context = getApplicationContext();
 
@@ -152,23 +151,6 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         }
     }
 
-    private void setupTabTextColor(TabLayout tabLayout) {
-        final ColorStateList defaultColorStateList = tabLayout.getTabTextColors();
-        final ColorStateList resultColorStateList = new ColorStateList(
-                new int[][]{
-                    new int[]{android.R.attr.state_selected},
-                    new int[]{}
-                },
-                new int[] {
-                    defaultColorStateList.getColorForState(new int[]{android.R.attr.state_selected},
-                            Utils.getColorAttrDefaultColor(getApplicationContext(),
-                            com.android.internal.R.attr.colorAccentPrimaryVariant)),
-                    Utils.getColorAttrDefaultColor(getApplicationContext(), android.R.attr.textColorSecondary)
-                }
-        );
-        tabLayout.setTabTextColors(resultColorStateList);
-    }
-
     private void showSuggestionFragment() {
         final Class<? extends Fragment> fragment = FeatureFactory.getFactory(this)
                 .getSuggestionFeatureProvider(this).getContextualSuggestionFragment();
@@ -203,16 +185,22 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         fragmentTransaction.commit();
     }
 
-    // private void initHomepageContainer() {
-    //     tabLayout = findViewById(R.id.tab_layout);
-    //     viewPager = findViewById(R.id.viewPager);
+    private void setupTabIcons() {
+        mTabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        mTabLayout.getTabAt(1).setIcon(tabIcons[1]);
+    }
 
-    //     tabLayout.setupWithViewPager(viewPager);
-    //     ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-    //     viewPagerAdapter.addFragment(new TopLevelSettings(), "Device Settings");
-    //     viewPagerAdapter.addFragment(new CorvusSettings(), "Corvus Settings");
-    //     viewPager.setAdapter(viewPagerAdapter);
-    // }
+    private void initHomepageContainer() {
+        mTabLayout = findViewById(R.id.tab_layout);
+        mViewPager = findViewById(R.id.viewPager);
+
+        mTabLayout.setupWithViewPager(mViewPager);
+        // setupTabTextColor(mTabLayout);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPagerAdapter.addFragment(new TopLevelSettings(), "Device Settings");
+        viewPagerAdapter.addFragment(new CorvusSettings(), "Corvus Settings");
+        mViewPager.setAdapter(viewPagerAdapter);
+    }
 
     private int getSearchBoxHeight() {
         final int searchBarHeight = getResources().getDimensionPixelSize(R.dimen.search_bar_height);

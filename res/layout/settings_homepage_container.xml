@@ -76,15 +76,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="7dp"
-            android:layout_marginTop="20dp"
-            android:theme="@style/Theme.TabTheme"
-            android:background="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/tab_layout_background"
+            android:theme="@style/Theme.MaterialComponents.DayNight"
+            app:tabIndicator="@drawable/tab_indicator_background"
+            app:tabIndicatorHeight="50dp"
             app:tabGravity="center"
-            app:tabIndicator="@drawable/tabs_indicator_background"
-            app:tabIndicatorColor="?androidprv:attr/colorAccentPrimaryVariant"
-            app:tabSelectedTextColor="@*android:color/accent_device_default"
             app:tabTextAppearance="@style/TextAppearance.Tab"
-            app:tabTextColor="?android:attr/textColorSecondary"/>
+            app:tabInlineLabel="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -106,7 +105,6 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:layout_below="@id/contextual_cards_content"/>
+        android:layout_below="@id/contextual_cards_content" />
 
 </RelativeLayout>

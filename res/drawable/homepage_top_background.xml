@@ -4,6 +4,6 @@
         android:top="2dp"
         android:right="2dp"
         android:bottom="2dp" />
-    <corners android:bottomLeftRadius="22dp" android:bottomRightRadius="22dp" />
+    <corners android:bottomLeftRadius="?android:attr/dialogCornerRadius" android:bottomRightRadius="?android:attr/dialogCornerRadius" />
     <solid android:color="?android:attr/colorControlHighlight" />
 </shape>
