@@ -18,8 +18,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/search_bar_background">
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/search_bar"
+        style="@style/SearchBarStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
         <Toolbar
             android:id="@+id/search_action_bar"
@@ -37,6 +43,8 @@
                 android:layout_gravity="center"
                 android:text="@string/search_menu"/>
         </Toolbar>
+        
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>
 
