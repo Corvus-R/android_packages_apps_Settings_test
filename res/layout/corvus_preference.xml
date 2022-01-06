@@ -8,11 +8,10 @@
     android:paddingEnd="10dp"
     android:paddingTop="10dp">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        app:cardBackgroundColor="?android:attr/colorControlHighlight">
+        style="@style/ContextualCardStyle">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -48,11 +47,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/rounded_bg"
                 android:src="@drawable/ic_arrow_forward"/>
 
         </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>
