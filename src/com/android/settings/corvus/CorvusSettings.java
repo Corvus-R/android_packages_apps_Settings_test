@@ -17,6 +17,7 @@
 package com.android.settings.corvus;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -48,6 +49,25 @@ public class CorvusSettings extends DashboardFragment {
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.CORVUS;
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        super.onCreatePreferences(savedInstanceState, rootKey);
+        final PreferenceScreen screen = getPreferenceScreen();
+        // Tint the homepage icons
+        final int tintColor = Utils.getHomepageIconColor(getContext());
+        final int count = screen.getPreferenceCount();
+        for (int i = 0; i < count; i++) {
+            final Preference preference = screen.getPreference(i);
+            if (preference == null) {
+                break;
+            }
+            final Drawable icon = preference.getIcon();
+            if (icon != null) {
+                icon.setTint(tintColor);
+            }
+        }
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
