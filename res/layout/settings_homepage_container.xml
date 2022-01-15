@@ -101,10 +101,17 @@
         android:layout_marginEnd="@dimen/contextual_card_side_margin"
         android:layout_below="@id/suggestion_content"/>
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_below="@id/contextual_cards_content"
+        app:cardElevation="0dp">
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/contextual_cards_content" />
+        android:layout_height="wrap_content" />
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>
