@@ -20,6 +20,14 @@
     xmlns:settings="http://schemas.android.com/apk/res-auto"
     android:key="corvus_settings">
 
+    <Preference
+        android:fragment="com.android.settings.corvus.fragments.Theming"
+        android:key="theming_fragment"
+        android:icon="@drawable/ic_raven_themes"
+        android:layout="@layout/corvus_preference"
+        android:title="@string/raven_themes_title"
+        android:summary="@string/raven_themes_summary"/>
+
     <com.android.settings.corvus.CorvusPreference
         android:key="statusbar_fragment"
         android:icon="@drawable/ic_hand_gesture"
