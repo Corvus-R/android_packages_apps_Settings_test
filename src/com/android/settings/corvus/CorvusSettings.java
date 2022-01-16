@@ -23,16 +23,21 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
+import androidx.preference.PreferenceFragmentCompat;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.Utils;
+import com.android.settings.core.SubSettingLauncher;
 import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.support.SupportPreferenceController;
 import com.android.settingslib.search.SearchIndexable;
+import com.android.settingslib.core.instrumentation.Instrumentable;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
-public class CorvusSettings extends DashboardFragment {
+public class CorvusSettings extends DashboardFragment implements
+        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     private static final String TAG = "CorvusSettings";
 
@@ -49,6 +54,24 @@ public class CorvusSettings extends DashboardFragment {
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.CORVUS;
+    }
+
+    @Override
+    public Fragment getCallbackFragment() {
+        return this;
+    }
+
+    @Override
+    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+        new SubSettingLauncher(getActivity())
+                .setDestination(pref.getFragment())
+                .setArguments(pref.getExtras())
+                .setSourceMetricsCategory(caller instanceof Instrumentable
+                        ? ((Instrumentable) caller).getMetricsCategory()
+                        : Instrumentable.METRICS_CATEGORY_UNKNOWN)
+                .setTitleRes(-1)
+                .launch();
+        return true;
     }
 
     @Override
