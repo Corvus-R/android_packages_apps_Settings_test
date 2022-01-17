@@ -92,7 +92,7 @@
 
     <!-- Theme fragment -->
     <string name="raven_themes_title">Theming</string>
-    <string name="raven_themes_summary">Monet,Custom Accent,Fonts,Icons</string>
+    <string name="raven_themes_summary">Monet | Custom Accent | Fonts | Icons</string>
 
     <!-- Monet Engine -->
     <string name="monet_engine_custom_color_title">Use custom color</string>
