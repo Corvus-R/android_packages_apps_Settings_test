@@ -14,7 +14,7 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="Theming">
+    android:title="@string/raven_themes_title">
 
     <PreferenceCategory
         android:key="monet_category"
@@ -32,6 +32,16 @@
         android:dependency="monet_engine_custom_color"
         android:defaultValue="0xffffff" />
 
+    <com.corvus.support.preferences.SecureSettingSwitchPreference
+        android:key="monet_engine_linear_lightness"
+        android:title="@string/monet_engine_linear_lightness_title"
+        android:defaultValue="false" />
+
+    <com.corvus.support.preferences.SecureSettingSwitchPreference
+        android:key="monet_engine_accurate_shades"
+        android:title="@string/monet_engine_accurate_shades_title"
+        android:defaultValue="true" />
+
     <com.corvus.support.preferences.SecureSettingSeekBarPreference
         android:key="monet_engine_white_luminance_user"
         android:title="@string/monet_engine_white_luminance_user_title"
@@ -40,11 +50,6 @@
         settings:min="200"
         settings:interval="100"/>
 
-    <com.corvus.support.preferences.SecureSettingSwitchPreference
-        android:key="monet_engine_accurate_shades"
-        android:title="@string/monet_engine_accurate_shades_title"
-        android:defaultValue="true" />
-
     <com.corvus.support.preferences.SecureSettingSeekBarPreference
         android:key="monet_engine_chroma_factor"
         android:title="@string/monet_engine_chroma_factor_title"
@@ -52,11 +57,6 @@
         android:max="400"
         settings:min="50"
         settings:interval="50"/>
-
-    <com.corvus.support.preferences.SecureSettingSwitchPreference
-        android:key="monet_engine_linear_lightness"
-        android:title="@string/monet_engine_linear_lightness_title"
-        android:defaultValue="false" />
 
     </PreferenceCategory>
 
