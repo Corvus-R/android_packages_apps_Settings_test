@@ -83,6 +83,10 @@
             app:tabIndicatorHeight="50dp"
             app:tabGravity="center"
             app:tabTextAppearance="@style/TextAppearance.Tab"
+            app:tabIndicatorColor="?androidprv:attr/colorAccentPrimaryVariant"
+            app:tabSelectedTextColor="@*android:color/accent_device_default"
+            app:tabIconTint="@*android:color/accent_device_default"
+            app:tabTextColor="?android:attr/textColorSecondary"
             app:tabInlineLabel="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
