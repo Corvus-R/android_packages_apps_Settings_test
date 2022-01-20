@@ -71,10 +71,16 @@
         android:summary="@string/raven_buttons_summary"/>
 
     <com.android.settings.corvus.CorvusPreference
-        android:fragment="com.android.settings.corvus.fragments.Gaming"
-        android:key="gaming_fragment"
+        android:key="gaming_mode"
         android:icon="@drawable/ic_raven_gaming"
         android:title="@string/raven_gaming_title"
-        android:summary="@string/raven_gaming_summary"/>
+        android:summary="@string/raven_gaming_summary">
+        
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="org.exthmui.game"
+            android:targetClass="org.exthmui.game.ui.MainActivity" />
+
+    </com.android.settings.corvus.CorvusPreference>
 
 </PreferenceScreen>
