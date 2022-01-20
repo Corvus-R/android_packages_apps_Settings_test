@@ -93,6 +93,16 @@
     <!-- Theme fragment -->
     <string name="raven_themes_title">Theming</string>
     <string name="raven_themes_summary">Monet | Custom Accent | Fonts | Icons</string>
+    <string name="raven_statusbar_title">Statusbar</string>
+    <string name="raven_statusbar_summary">Date&amp;Time | Network traffic | Status Icons | Gestures</string>
+    <string name="raven_quicksettings_title">Quick Settings</string>
+    <string name="raven_quicksettings_summary">Brightness bar | QS Clock and styles | Media</string>
+    <string name="raven_notification_title">Notification</string>
+    <string name="raven_notification_summary">Heads-up | Notification Light | Notif headers | Notif count</string>
+    <string name="raven_lockscreen_title">Lockscreen</string>
+    <string name="raven_lockscreen_summary">Visualiser | Blur | Ambient display</string>
+    <string name="raven_battery_title">Battery</string>
+    <string name="raven_battery_summary">styles | Info | Extra toggles</string>
 
     <!-- Monet Engine -->
     <string name="monet_engine_custom_color_title">Use custom color</string>

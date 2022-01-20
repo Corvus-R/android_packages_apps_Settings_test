@@ -23,7 +23,7 @@
 
     <PreferenceCategory
         android:key="monet_category"
-        android:title="Monet">
+        android:title="Monet"/>
 
      <com.corvus.support.preferences.SecureSettingSwitchPreference
         android:key="monet_engine_custom_color"
@@ -62,7 +62,5 @@
         android:max="400"
         settings:min="50"
         settings:interval="50"/>
-
-    </PreferenceCategory>
 
 </PreferenceScreen>

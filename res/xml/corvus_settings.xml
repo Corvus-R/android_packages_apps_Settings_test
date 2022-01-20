@@ -28,15 +28,38 @@
         android:summary="@string/raven_themes_summary"/>
 
     <com.android.settings.corvus.CorvusPreference
+        android:fragment="com.android.settings.corvus.fragments.Statusbar"
         android:key="statusbar_fragment"
-        android:icon="@drawable/ic_hand_gesture"
-        android:title="Statusbar"
-        android:summary="Battery Styles | Date and Time"/>
+        android:icon="@drawable/ic_raven_statusbar"
+        android:title="@string/raven_statusbar_title"
+        android:summary="@string/raven_statusbar_summary"/>
 
     <com.android.settings.corvus.CorvusPreference
+        android:fragment="com.android.settings.corvus.fragments.QuickSettings"
         android:key="qs_fragment"
-        android:icon="@drawable/ic_apps"
-        android:title="Quick Settings"
-        android:summary="Notification Panel, Brightness Slider"/>
+        android:icon="@drawable/ic_raven_quicksettings"
+        android:title="@string/raven_quicksettings_title"
+        android:summary="@string/raven_quicksettings_summary"/>
+
+    <com.android.settings.corvus.CorvusPreference
+        android:fragment="com.android.settings.corvus.fragments.Lockscreen"
+        android:key="lockscreen_fragment"
+        android:icon="@drawable/ic_raven_lockscreen"
+        android:title="@string/raven_lockscreen_title"
+        android:summary="@string/raven_lockscreen_summary"/>
+
+    <com.android.settings.corvus.CorvusPreference
+        android:fragment="com.android.settings.corvus.fragments.Battery"
+        android:key="battery_fragment"
+        android:icon="@drawable/ic_raven_battery"
+        android:title="@string/raven_battery_title"
+        android:summary="@string/raven_battery_summary"/>
+
+    <com.android.settings.corvus.CorvusPreference
+        android:fragment="com.android.settings.corvus.fragments.Notifications"
+        android:key="notification_fragment"
+        android:icon="@drawable/ic_raven_notifications"
+        android:title="@string/raven_notification_title"
+        android:summary="@string/raven_notification_summary"/>
 
 </PreferenceScreen>
