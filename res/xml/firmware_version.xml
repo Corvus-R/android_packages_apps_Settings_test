@@ -21,11 +21,6 @@
     android:title="@string/firmware_version"
     settings:keywords="@string/keywords_android_version">
 
-<PreferenceScreen
-    android:layout="@layout/logo_layout"
-    android:key="logo"
-    android:selectable="false"/>
-
     <!-- Android version -->
     <Preference
         android:key="os_firmware_version"
@@ -34,14 +29,6 @@
         settings:enableCopying="true"
         settings:searchable="false"
         settings:controller="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionDetailPreferenceController"/>
-
-    <!-- Device name -->
-    <Preference
-        android:key="about_device_name"
-        android:title="@string/about_device_name"
-        android:summary="@string/summary_placeholder"
-        settings:enableCopying="true"
-        settings:controller="com.android.settings.deviceinfo.firmwareversion.AboutDeviceNamePreferenceController"/>
 
     <!-- Security patch -->
     <Preference
@@ -83,15 +70,6 @@
         android:selectable="false"
         settings:enableCopying="false"
         settings:controller="com.android.settings.deviceinfo.firmwareversion.SelinuxStatusPreferenceController"/>
-
-    <!-- Build -->
-    <Preference
-        android:key="os_build_date"
-        android:title="@string/build_date"
-        android:summary="@string/summary_placeholder"
-        android:selectable="false"
-        settings:enableCopying="true"
-        settings:controller="com.android.settings.deviceinfo.firmwareversion.BuildDatePreferenceController"/>
 
     <Preference
         android:key="os_build_number"

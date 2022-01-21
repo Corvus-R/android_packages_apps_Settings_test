@@ -98,11 +98,11 @@
     <string name="raven_quicksettings_title">Quick Settings</string>
     <string name="raven_quicksettings_summary">Brightness bar | QS Clock and styles | Media</string>
     <string name="raven_notification_title">Notification</string>
-    <string name="raven_notification_summary">Heads-up | Notification Light | Notif headers | Notif count</string>
+    <string name="raven_notification_summary">Heads-up | Notification Light | Notif count</string>
     <string name="raven_lockscreen_title">Lockscreen</string>
     <string name="raven_lockscreen_summary">Visualiser | Blur | Ambient display</string>
     <string name="raven_battery_title">Battery</string>
-    <string name="raven_battery_summary">styles | Info | Extra toggles</string>
+    <string name="raven_battery_summary">Styles | Info | Extra toggles</string>
 
     <!-- Monet Engine -->
     <string name="monet_engine_custom_color_title">Use custom color</string>
@@ -203,4 +203,12 @@
     <!-- Fullscreen gestures -->
     <string name="fullscreen_gestures_title">Fullscreen gestures</string>
     <string name="fullscreen_gestures_summary">Hide navbar pill and keyboard space</string>
+
+    <!-- Bottom sheet strings -->
+    <string name="open_ravendesk">Open Ravendesk</string>
+    <string name="device">Device:</string>
+    <string name="maintainer">Maintainer:</string>
+    <string name="corvus_build_date">Build date:</string>
+    <string name="build_type">Build type:</string>
+    <string name="version">Version:</string>
 </resources>

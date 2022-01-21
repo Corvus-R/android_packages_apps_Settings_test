@@ -31,16 +31,20 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.os.UserManager;
+import android.os.SystemProperties;
+import android.os.Build;
 import android.util.FeatureFlagUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.settings.corvus.CorvusSettings;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -102,7 +106,8 @@ public class SettingsHomepageActivity extends FragmentActivity implements
     }
 
     Context context;
-    ImageView avatarView;
+    ImageView avatarView, btnCorvusVersion;
+    TextView crvsVersion, crvsMaintainer, crvsDevice, crvsBuildDate, crvsBuildType;
     UserManager mUserManager;
 
     @Override
@@ -149,6 +154,38 @@ public class SettingsHomepageActivity extends FragmentActivity implements
                 showFragment(new ContextualCardsFragment(), R.id.contextual_cards_content);
             }
         }
+
+        btnCorvusVersion = findViewById(R.id.btnCorvusVersion);
+        btnCorvusVersion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showBottomSheetDialog();
+                }
+            });
+    }
+
+    private void showBottomSheetDialog() {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.CorvusBottomSheetDialogTheme);
+        bottomSheetDialog.setContentView(R.layout.corvus_bottom_sheet);
+
+        crvsDevice = bottomSheetDialog.findViewById(R.id.corvus_device);
+        crvsVersion = bottomSheetDialog.findViewById(R.id.corvus_version);
+        crvsMaintainer = bottomSheetDialog.findViewById(R.id.corvus_maintainer);
+        crvsBuildDate = bottomSheetDialog.findViewById(R.id.corvus_build_date);
+        crvsBuildType = bottomSheetDialog.findViewById(R.id.corvus_build_type);
+
+        String buildDate = SystemProperties.get("ro.build.date").substring(0,10);
+
+        crvsDevice.setText(SystemProperties.get("ro.product.device") + "(" + SystemProperties.get("ro.product.model") + ")");
+        crvsVersion.setText("Corvus_v"
+                + SystemProperties.get("ro.corvus.build.version")
+                + "-"
+                + SystemProperties.get("ro.corvus.codename"));
+        crvsMaintainer.setText(SystemProperties.get("ro.corvus.maintainer"));
+        crvsBuildDate.setText(buildDate);
+        crvsBuildType.setText(SystemProperties.get("ro.corvus.build.type"));
+
+        bottomSheetDialog.show();
     }
 
     private void showSuggestionFragment() {

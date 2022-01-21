@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottomsheet_background">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:tint="@*android:color/accent_device_default"
+        android:src="@drawable/logo"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:cardBackgroundColor="?android:attr/colorControlHighlight"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/device"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/ic_device"
+                    android:drawableTint="@*android:color/accent_device_default"
+                    android:drawablePadding="5dp"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/corvus_device"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:padding="2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/version"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/ic_settings_system_dashboard_white"
+                    android:drawableTint="@*android:color/accent_device_default"
+                    android:drawablePadding="5dp"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/corvus_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:padding="2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/maintainer"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/ic_maintainer"
+                    android:drawableTint="@*android:color/accent_device_default"
+                    android:drawablePadding="5dp"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/corvus_maintainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:padding="2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/build_type"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/ic_raven_buildtype"
+                    android:drawableTint="@*android:color/accent_device_default"
+                    android:drawablePadding="5dp"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/corvus_build_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:padding="2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/corvus_build_date"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/ic_build_date"
+                    android:drawableTint="@*android:color/accent_device_default"
+                    android:drawablePadding="5dp"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/corvus_build_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/bottomsheet_text"
+                    android:padding="2dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- <Button
+        android:id="@+id/btn_ravendesk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_bg"
+        android:layout_margin="10dp"
+        android:text="@string/open_ravendesk" /> -->
+
+</LinearLayout>

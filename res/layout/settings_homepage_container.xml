@@ -24,6 +24,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/btnCorvusVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"
+        android:tint="@*android:color/accent_device_default"
+        android:padding="8dp"
+        android:src="@drawable/ic_info_outline_24"
+        android:foreground="@drawable/button_ripple_radius"
+        android:background="@drawable/rounded_bg"/>
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -75,7 +87,8 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="7dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="7dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/tab_layout_background"
             android:theme="@style/Theme.MaterialComponents.DayNight"
