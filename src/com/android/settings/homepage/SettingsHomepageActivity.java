@@ -255,7 +255,7 @@ public class SettingsHomepageActivity extends FragmentActivity implements
             bitmapUserIcon = UserIcons.convertToBitmap(defaultUserIcon);
         }
         Drawable drawableUserIcon = new CircleFramedDrawable(bitmapUserIcon,
-                bitmapUserIcon.getHeight());
+                (int) context.getResources().getDimension(R.dimen.circle_avatar_size));
 
         return drawableUserIcon;
     }
