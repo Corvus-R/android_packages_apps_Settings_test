@@ -90,7 +90,7 @@
     <string name="notification_sound_vib_screen_on_title">Notifications behaviour</string>
     <string name="notification_sound_vib_screen_on_summary">Play sound and vibration for notifications when screen is on</string>
 
-    <!-- Theme fragment -->
+    <!-- Corvus fragments -->
     <string name="raven_themes_title">Theming</string>
     <string name="raven_themes_summary">Monet | Custom Accent | Fonts | Icons</string>
     <string name="raven_statusbar_title">Statusbar</string>
@@ -103,6 +103,10 @@
     <string name="raven_lockscreen_summary">Visualiser | Blur | Ambient display</string>
     <string name="raven_battery_title">Battery</string>
     <string name="raven_battery_summary">Styles | Info | Extra toggles</string>
+    <string name="raven_buttons_title">Buttons</string>
+    <string name="raven_buttons_summary">HW Keys customization | Button gestures</string>
+    <string name="raven_gaming_title">Gaming</string>
+    <string name="raven_gaming_summary">Game mode | Game overlay | Gaming features</string>
 
     <!-- Monet Engine -->
     <string name="monet_engine_custom_color_title">Use custom color</string>
