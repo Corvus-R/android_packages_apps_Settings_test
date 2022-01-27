@@ -52,9 +52,6 @@
     <!-- Statusbar Tuner -->
     <string name="statusbar_items_title">Statusbar items</string>
 
-    <!-- Display customization category -->
-    <string name="customization_category_title">Customization</string>
-
     <!-- Hardware info -->
     <!-- Label for device's hardware platform value [CHAR LIMIT=40] -->
     <string name="platform_revision">Platform</string>
