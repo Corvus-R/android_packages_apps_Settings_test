@@ -110,7 +110,6 @@
     <com.corvus.support.preferences.SystemSettingSwitchPreference
         android:key="fullscreen_gestures"
         android:title="@string/fullscreen_gestures_title"
-        android:summary="@string/fullscreen_gestures_summary"
         android:defaultValue="false" />
 
     <Preference
