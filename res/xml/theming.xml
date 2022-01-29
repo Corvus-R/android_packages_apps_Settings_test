@@ -16,11 +16,6 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/raven_themes_title">
 
-    <com.android.settingslib.widget.IllustrationPreference
-        android:key="theming_fragment_video"
-        settings:searchable="false"
-        settings:lottie_rawRes="@raw/theming"/>
-
     <PreferenceCategory
         android:key="monet_category"
         android:title="Monet"/>
