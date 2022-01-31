@@ -40,6 +40,7 @@ import com.android.internal.util.hwkeys.ActionUtils;
 import com.android.settings.corvus.preference.ActionFragment;
 import com.corvus.support.preferences.CustomSeekBarPreference;
 import com.corvus.support.preferences.SystemSettingSwitchPreference;
+import com.android.internal.util.corvus.CorvusUtils;
 
 @SearchIndexable
 public class Buttons extends ActionFragment 
@@ -204,6 +205,7 @@ public class Buttons extends ActionFragment
         mNavigationBar.setOnPreferenceChangeListener(this);
 
         mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
+        mLayoutSettings.setEnabled(!CorvusUtils.isOverlayEnabled("com.android.internal.systemui.navbar.gestural"));
 
         mNavigationArrows = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
 
@@ -258,6 +260,7 @@ public class Buttons extends ActionFragment
                     mIsNavSwitchingMode = false;
                 }
             }, 1500);
+            mLayoutSettings.setEnabled(!CorvusUtils.isOverlayEnabled("com.android.internal.systemui.navbar.gestural"));
             return true;
         } else {
             return false;
