@@ -412,4 +412,6 @@
     <!-- Charging animation -->
     <string name="charging_animation_title">Charging animation</string>
     <string name="charging_animation_summary">Display an animation when the device is plugged in</string>
+    <string name="charging_animation_loop_title">Repeat charging animation</string>
+    <string name="charging_animation_loop_summary">Repeat charging ripple animation every 3 seconds</string>
 </resources>
