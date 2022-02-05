@@ -27,11 +27,15 @@ import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreference;
 import androidx.preference.ListPreference;
 
+import com.corvus.support.preferences.SystemSettingSwitchPreference;
+
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
+
+import com.android.internal.util.corvus.CorvusUtils;
 
 @SearchIndexable
 public class Battery extends SettingsPreferenceFragment
@@ -40,6 +44,7 @@ public class Battery extends SettingsPreferenceFragment
     // Battery Styles
     private static final String PREF_STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String PREF_STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+    private static final String BATTERY_LEVEL_COLORS = "battery_level_colors";
 
     private static final int BATTERY_STYLE_PORTRAIT = 0;
     private static final int BATTERY_STYLE_TEXT = 4;
@@ -50,6 +55,8 @@ public class Battery extends SettingsPreferenceFragment
 
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
+    private SystemSettingSwitchPreference mBatteryLevelColors;
+
     private int mBatteryPercentValue;
 
     @Override
@@ -79,6 +86,9 @@ public class Battery extends SettingsPreferenceFragment
         
         mBatteryPercent.setEnabled(
                 batterystyle != BATTERY_STYLE_TEXT && batterystyle != BATTERY_STYLE_HIDDEN);
+
+        mBatteryLevelColors = (SystemSettingSwitchPreference) findPreference(BATTERY_LEVEL_COLORS);
+        mBatteryLevelColors.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -101,6 +111,9 @@ public class Battery extends SettingsPreferenceFragment
                     UserHandle.USER_CURRENT);
             int index = mBatteryPercent.findIndexOfValue((String) newValue);
             mBatteryPercent.setSummary(mBatteryPercent.getEntries()[index]);
+            return true;
+        } else if (preference == mBatteryLevelColors) {
+            CorvusUtils.showSystemUiRestartDialog(getActivity());
             return true;
         }
         return false;
