@@ -37,12 +37,12 @@ public class SelinuxStatusPreferenceController extends BasePreferenceController 
 
     @Override
     public CharSequence getSummary() {
-        if (!SELinux.isSELinuxEnabled()) {
-            return (CharSequence) mContext.getString(R.string.selinux_status_disabled);
-        } else if (!SELinux.isSELinuxEnforced()) {
-            return (CharSequence) mContext.getString(R.string.selinux_status_permissive);
-        } else {
-            return (CharSequence) mContext.getString(R.string.selinux_status_enforcing);
+        int stringId = R.string.selinux_status_disabled;
+        if (SELinux.isSELinuxEnabled()) {
+            stringId = SELinux.isSELinuxEnforced()
+                    ? R.string.selinux_status_enforcing
+                    : R.string.selinux_status_permissive;
         }
+        return mContext.getString(stringId);
     }
 }
