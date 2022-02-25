@@ -176,13 +176,20 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- <Button
+    <Button
         android:id="@+id/btn_ravendesk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/rounded_bg"
-        android:layout_margin="10dp"
-        android:text="@string/open_ravendesk" /> -->
+        android:background="@drawable/raven_button"
+        android:drawableStart="@drawable/ic_download_for_offline"
+        android:drawablePadding="2dp"
+        android:drawableTint="?android:attr/textColorSecondary"
+        android:layout_marginBottom="15dp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textColor="?android:attr/textColorSecondary"
+        android:text="@string/open_ravendesk"
+        android:visibility="gone" />
 
 </LinearLayout>
