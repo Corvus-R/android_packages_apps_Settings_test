@@ -27,10 +27,10 @@ import com.android.settings.search.BaseSearchIndexProvider
 import com.android.settingslib.core.AbstractPreferenceController
 import com.android.settingslib.core.lifecycle.Lifecycle
 import com.android.settingslib.search.SearchIndexable
-import com.krypton.settings.fragment.KryptonDashboardFragment
+import com.android.settings.corvus.fragments.CorvusDashboardFragment
 
 @SearchIndexable
-class AppLockSettingsFragment : KryptonDashboardFragment(),
+class AppLockSettingsFragment : CorvusDashboardFragment(),
     MenuItem.OnMenuItemClickListener {
 
     private var debugEnabled = SystemProperties.get(DEBUG_PROPERTY, null) == LEVEL_DEBUG

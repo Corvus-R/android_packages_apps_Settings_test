@@ -22,12 +22,12 @@ import android.content.Context
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 
-import com.krypton.settings.KryptonBasePreferenceController
+import com.android.settings.corvus.CorvusBasePreferenceController
 
 class AppLockTimeoutPreferenceController(
     context: Context,
     key: String,
-) : KryptonBasePreferenceController(context, key),
+) : CorvusBasePreferenceController(context, key),
         Preference.OnPreferenceChangeListener {
 
     private val appLockManager = context.getSystemService(AppLockManager::class.java)

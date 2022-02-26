@@ -21,7 +21,7 @@ import android.os.Bundle
 import android.view.View
 
 import com.android.settings.R
-import com.krypton.settings.fragment.AppListFragment
+import com.android.settings.corvus.fragments.AppListFragment
 
 class AppLockPackageListFragment : AppListFragment() {
 
