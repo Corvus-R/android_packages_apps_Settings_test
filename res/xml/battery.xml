@@ -52,11 +52,11 @@
             android:summary="@string/charging_animation_summary"
             android:defaultValue="false" />
 
-    <com.corvus.support.preferences.SystemSettingSwitchPreference
+    <!-- <com.corvus.support.preferences.SystemSettingSwitchPreference
             android:key="charging_animation_loop"
             android:title="@string/charging_animation_loop_title"
             android:summary="@string/charging_animation_loop_summary"
             android:dependency="charging_animation"
-            android:defaultValue="false" />
+            android:defaultValue="false" /> -->
 
 </PreferenceScreen>
